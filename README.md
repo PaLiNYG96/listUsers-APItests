@@ -2,7 +2,7 @@
 ## SDET - QA Engineer API Testing Exercise
 
 This is a small set of API tests set up using **SuperTest**, **Mocha**, and **Chai**. 
-These are tests are aimed at testing “List Users” (GET) endpoint from (https://reqres.in/)
+These tests are aimed at testing “List Users” (GET) endpoint from (https://reqres.in/)
 
 
 ### Setup
