@@ -42,7 +42,7 @@ let defaultPerPage;
         const res = await request
         .get(`users?page=${pageCount+1}`)
            
-            expect(res).to.have.status(200)
+            expect(res.statusCode).to.be.eq(200)
             expect(res.body.data).to.be.empty;
             expect(res.body.page).to.be.eq(pageCount+1)
             expect(res.body.per_page).to.be.eq(defaultPerPage)
@@ -80,7 +80,7 @@ let defaultPerPage;
             expect(res.body.data.id).to.be.eq(i)
         }
     });
-    it('GET /users?per_page=3&delay=2', async () => {
+    it('GET /users?per_page=3&delay=2', async () => { // Get 3 users per page and delay request by 2 seconds
         const res = await request
         .get('users?per_page=3&delay=2')
             expect(res.statusCode).to.be.eq(200)
@@ -91,7 +91,7 @@ let defaultPerPage;
     });
     
 })
-describe.only('listUsers - negative testing', async () => {
+describe('listUsers - negative testing', async () => {
     let pageCount;
     let total;
     let defaultPerPage;
@@ -105,7 +105,7 @@ describe.only('listUsers - negative testing', async () => {
                 total = res.body.total;
                 defaultPerPage = res.body.per_page;
         });
-        it('GET /users?page=wrongNum', async () => { // Get invalid page number, Should fail with a 404 for NOT FOUND
+        it('GET /users?page=wrongNum', async () => { // Get invalid page number, Should fail with a 404  (NOT FOUND)
             const res = await request
             .get('users?page=-1')
                 expect(res.statusCode).to.be.equal(404) // THIS FAILS = Bug // THIS FAILS = Bug  since this request should really return a 404
@@ -114,7 +114,7 @@ describe.only('listUsers - negative testing', async () => {
         it('GET /users?per_page=-5', async () => { // invalid per_page value (negative value), breaks pagination
             const res = await request
             .get(`users?per_page=${total - 5}`)
-                expect(res.statusCode).to.be.eq(400) // THIS FAILS = Bug  since this request should really return a 400
+                expect(res.statusCode).to.be.eq(400) // THIS FAILS = Bug, since this request should really return a 400 (Bad Request)
         });
         it('GET /users?per_page=0', async () => { //Get 0 rows per page is invalid and should fail but instead it returns defaults. This could be considered a bug by some QAs depending on specifications.
             const res = await request
