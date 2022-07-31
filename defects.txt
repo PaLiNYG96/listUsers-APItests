@@ -1,0 +1,7 @@
+Bugs:  
+
+1. per_page – Acceps negative numbers. This also causes another bug where the total_pages value becomes (– total /per_page) which is inaccurate and should
+              never be a negative number.This in conclusion breaks pagination as we will now have negative unreachable page values and an inaccurate per_page value. 
+
+2. page – Accepts negative and invalid values. An invalid page number should return a 400 or 404 error. This is usually done to let the FE and User 
+          that there was an issue, or that the page was not found.  

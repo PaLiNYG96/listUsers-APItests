@@ -1,0 +1,45 @@
+Requirements: 
+
+  1. User should be able to GET all available rows using the /users endpoint.  
+
+  2. User should be able to paginate the rows according to data size. 
+
+  3. User should be able to edit Rows per page using the per_page parameter 
+
+  4. User should be able to GET user by id value. 
+
+ 
+
+Parameters:  
+
+#Page:  
+
+	- Default: 1 
+
+	- Accepted values: Integers between 0 and (#total/#per_page). 0 will return to default. 
+
+	- Should not be accepted: Negative integers, and numbers greater than (#total/#per_page).  
+
+#per_page: 
+
+	- Default: 6 
+
+	- Accepted values: Positive integers. 0 will return Default value. 
+
+	- Should not be accepted: Negative integers. 
+
+#id: 
+
+	- Accepted Values: valid ids (Integers). 
+
+	- Should not be accepted: Invalid ids or non-integer values.  
+
+ 
+
+#total: Total number of available rows 
+
+#total_pages: Returns the number of pages, this value will change depending on #per_page and #total. 
+
+ 
+
+ 
